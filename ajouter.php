@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
       echo "Statistic player data inserted successfully! ID: " . $id_statistic_player . "<br>";
   } else {
       echo "Error: " . $stmt->error . "<br>";
-      exit; 
+     
   }
   $stmt->close();
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
       echo "Nationnalite data inserted successfully! ID: " . $id_nationnalite . "<br>";
   } else {
       echo "Error: " . $stmt->error . "<br>";
-      exit; 
+      
   }
   $stmt->close();
 
