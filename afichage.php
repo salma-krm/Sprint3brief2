@@ -30,7 +30,7 @@ include 'index.php';
 </header>
 <section class="bg-secondary">
     <div class="container">
-        <button  style ="background-color: rgb(69, 169, 221)"class="btn  my-5"><a href="age.php" class="text-light">add user</a> 
+        <button  style ="background-color: rgb(69, 169, 221)"class="btn  my-5"><a href="ajouter.php" class="text-light">add user</a> 
 
     </button>
     <table class=" rounded table table-success ">
