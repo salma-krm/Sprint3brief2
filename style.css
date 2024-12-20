@@ -1,0 +1,13 @@
+ * {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+}
+.image-contain{
+    
+        width: 10px;
+        height: 10px;
+        background-color: aquamarine;
+        
+      
+}
