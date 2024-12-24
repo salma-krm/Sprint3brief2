@@ -1,5 +1,6 @@
 <?php
-include 'index.php'; 
+include './db/db_con.php'; 
+
 
 if (isset($_POST['submit'])) {
   $name = $_POST['nom'];
@@ -16,8 +17,14 @@ if (isset($_POST['submit'])) {
   $physical =$_POST['physical'];
   $defending = $_POST['defendling'];
 
- 
-  $stmt = $coon->prepare("INSERT INTO `statistic_player` (pace, shooting, passing, dribbling, defending, physical) VALUES (?, ?, ?, ?, ?, ?)");
+  if($position == "gk"){
+    $sql ="INSERT INTO `statistic_gk`(diving, hadling, kicking,speed,reflexes, positioning)  VALUES (?, ?, ?, ?, ?, ?)";
+
+  }else{
+    $sql= "INSERT INTO `statistic_player` (pace, shooting, passing, dribbling, defending, physical)VALUES (?, ?, ?, ?, ?, ?)";
+
+  } 
+  $stmt = $coon->prepare($sql);
   $stmt->bind_param("iiiiii", $pace, $shooting, $passing, $dribbling, $defending, $physical);
   if ($stmt->execute()) {
       $id_statistic_player = $coon->insert_id; 
@@ -27,8 +34,6 @@ if (isset($_POST['submit'])) {
      
   }
   $stmt->close();
-
- 
   $stmt = $coon->prepare("INSERT INTO `nationnalite` (nom, flag) VALUES (?, ?)");
   $stmt->bind_param("ss", $nationnalite, $flag);
   if ($stmt->execute()) {
@@ -39,8 +44,6 @@ if (isset($_POST['submit'])) {
       
   }
   $stmt->close();
-
- 
   $stmt = $coon->prepare("INSERT INTO `equipe` (nom, logo) VALUES (?, ?)");
   $stmt->bind_param("ss", $equipe, $logo);
   if ($stmt->execute()) {
@@ -127,24 +130,24 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="mb-3">
     <label >shooting</label>
-    <input type="text" class="form-control" placeholder ="Entre shooting " name ="shooting" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre shooting " name ="shooting" autocomplete ="off">
   </div>
   <div class="mb-3">
     <label >passing</label>
-    <input type="text" class="form-control" placeholder ="Entre passing  " name ="passing" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre passing  " name ="passing" autocomplete ="off">
   </div>
   <div class="mb-3">
     <label >driblling</label>
-    <input type="text" class="form-control" placeholder ="Entre driblling  " name ="driblling" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre driblling  " name ="driblling" autocomplete ="off">
   </div>
   <div class="mb-3">
     <label >defendling</label>
-    <input type="text" class="form-control" placeholder ="Entre defendling  " name ="defendling" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre defendling  " name ="defendling" autocomplete ="off">
   </div>
 
   <div class="mb-3">
     <label >physical</label>
-    <input type="text" class="form-control" placeholder ="Entre physical  " name ="physical" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre physical  " name ="physical" autocomplete ="off">
   </div>
 
 </div>
@@ -155,7 +158,7 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="mb-3">
     <label >handling</label>
-    <input type="text" class="form-control" placeholder ="Entre hadling" name ="hadling" autocomplete ="off">
+    <input type="number" class="form-control" placeholder ="Entre hadling" name ="hadling" autocomplete ="off">
   </div>
   <div class="mb-3">
     <label >kicking</label>

@@ -1,19 +1,13 @@
- <?php
-// ob_start();
- include 'index.php'; 
+<?php
+include './db/db_con.php'; 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $sql= "DELETE FROM player WHERE id =$id";
-
-    $result = mysqli_query($coon, $sql);
-
-    if ($result) {
-        echo "suprimer";  
-    } else {
-        echo "notttt";  
-    }
+    $sql = "DELETE FROM player WHERE id = $id";
+    $result = mysqli_query($coon, $sql); 
 }
-// header("location: add.php");
-// ob_end_flush();
 
 ?>
+<script>
+    window.location.href = "/";
+</script>
+
